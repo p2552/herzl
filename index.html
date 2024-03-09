@@ -1,0 +1,158 @@
+<!DOCTYPE html>                                                                 
+<html style='background-color:rgb(100,100,100);display:table;margin:auto;'>                                                                          
+<head> 
+<meta name='viewport' content='width=device-width, initial-scale=1'>  
+<style type="text/css">
+	tdd		{border: 1px dotted blue;}	
+	img			{border-radius:5%;display:block;margin:auto;}
+	span.menu   {display:inline-block;width:100%;height:35px;background-color:rgb(210,210,230);}
+	span.menu .item {height:20px;padding-top: 3px;font-size:17px;border-radius:5px;margin-left:10px;display:inline-block;text-align:center;float:right;width:45px;height:90%;background-color:rgb(190,210,240)}
+	button     {border-color: rgb(100,160,250);box-shadow: 0 1px 4px rgba(0, 0, 0, .6);;width:100px;height:90%;padding-top: 2px;font-size:17px;border-radius:5px;margin-left:10px;display:inline-block;text-align:center;float:right;background-color:rgb(190,210,240)}
+	button.lang {height:25px;padding-left:3px; float:left;width:40px;}
+	p.title		{font-size:25px;text-align:center;width:100%}
+	p.txt		{font-size:20px;}
+	
+	span.label  {margin-right:8px;height:50px;display:inline-block;border-radius:10px;border: 1px solid blue;}
+	p.lname {text-align:center;margin:0px;border-radius: 10px 10px 0px 0px;height:40%;background-color:rgb(230,170,250);   }
+	p.ltext {padding-left:10px;padding-right:10px;font-size:18px;text-align:center;margin:0px;border-radius: 0px 0px 10px 10px;height:60%;background-color:rgb(240,240,250);   }
+</style>
+<script type="text/javascript" src="lang.json"></script>
+    
+<script>  
+var language;
+function FirstLoad()    { 
+	// Make the DIV element draggable:
+//	document.body.style.width=screen.availWidth;
+	//console.log(windows);
+	(localStorage.getItem('language') == null) ? localStorage.setItem('language','heb') : false;
+	language=localStorage.getItem('language');
+	loadLang(language);
+
+}
+function loadLang(ll){
+	var list;
+	switch(ll){
+	case 'heb': list=heb; break;
+	default:	list=eng;
+	}
+
+	localStorage.setItem('language',ll)
+	var keys = Object.keys(list);
+	var i=0;
+	for (var key in list) {
+		console.log(list[key]+'==='+keys[i]);
+		var tt=document.getElementById(keys[i]);
+		tt.innerText=list[key].trim();
+		if(tt.className=='txt'){
+			tt.style.textAlign=(ll==='heb'?'right':'left');
+		}
+		i++;
+	}			
+}
+</script> 
+</head> 
+<body onload='FirstLoad()' style='align:middle;display:table-cell;'>
+	<span id=idMenu class=menu style=''>
+		<button id=idBuilding   type=button  >Building</button>
+		<button id=idArea 		type=button >Area</button>
+		<button id=idApartments type=button >Apartments</button>
+		
+		<button class=lang 		type=button onclick='loadLang("eng")'>eng</button>
+		<button class=lang		type=button onclick='loadLang("heb")'>heb</button>
+	</span>
+	<span style='display:block;border-radius:2%;background-color:rgb(230,230,250);'>
+		<p style='border-radius: 15px 15px 0px 0px;height:30px;background-color:rgb(210,210,250);text-align:center;'>The Project</p>
+		<table style='width:100%;height:500px'>
+			<tr>
+				<td style='width:40%;'><img src="images/main.png" style='max-width:250px'></td>
+				<td style='width:60%;padding-right:10px;vertical-align:top;'>
+					<p id=idProject class='project title' ></p>
+					<p id=idDescription class=txt style='width:100%'></p>
+					<!--button id=idApart type=button style='vertical-align:bottom;align:center;height:30px' onclick="loadForm('apart','h','eng')">Apartments</button-->
+				</td>
+			</tr>
+		</table>
+		<p style='border-radius:0px 0px 15px 15px;height:10px;background-color:rgb(210,210,250);text-align:center;'>  </p>
+	</span>
+	<span style='display:block;border-radius:2%;background-color:rgb(230,230,250);'>
+		<p style='border-radius: 15px 15px 0px 0px;height:30px;background-color:rgb(210,210,250);text-align:center;'>The Area</p>
+		<table style='padding:15px 5px 5px 5px;width:100%;height:200px;background-color:rgb(210,210,230);'>
+			<tr> 
+				<td style='width:33%'><img src="images/square-4.jpg"  onclick='window.location=this.src;' style='max-width:200px'></td>
+				<td colspan=2 style='width:66%'><iframe width="400" height="200px" style='display:block;margin:auto;' src="https://www.youtube.com/embed/7cGMYAxqfr4?si=SzSPfSJGvCtZd2x4&amp;start=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
+			</tr>
+			<tr>
+				<td style='width;33%'><img src="images/square-1.jpg"  onclick='window.location=this.src;' style='max-width:150px'></td>
+				<td style='width:33%'><img src="images/square-2.jpg"  onclick='window.location=this.src;' style='max-width:150px'></td>
+				<td style='width:33%'><img src="images/square-3.jpg"  onclick='window.location=this.src;' style='max-width:150px'></td>
+			</tr>
+		</table>
+		<p style='border-radius:0px 0px 15px 15px;height:10px;background-color:rgb(210,210,250);text-align:center;'>  </p>
+	</span>
+	<span style='display:block;border-radius:2%;background-color:rgb(230,230,250);'>
+		<p style='border-radius: 15px 15px 0px 0px;height:30px;background-color:rgb(210,210,250);text-align:center;'>The Apartments</p>
+		<table style='border-collapse: collapse;width:100%;height:300px;border-radius:2%;'>
+			<tr style='height:300px;border-bottom:1px solid grey;'>
+				<td style='width:35%;'><img src="images/apart40.png" onclick='window.location=this.src;' style='max-width:150px'></td>
+				<td style='width:65%;vertical-align:top;'>
+					<p id=idDescription40 class=txt style='height:60%;width:100%'>%description%</p>
+					<span class='label'>
+						<p class='lname'>Price</p>
+						<p class='ltext'>3.200.000 ILS</p>
+					</span>
+					<span class='label'>
+						<p class='lname'>Size</p>
+						<p class='ltext'> 39 m² </p>
+					</span>
+					<span class='label'>
+						<p class='lname'>Balkony</p>
+						<p class='ltext'> 10.5 m² </p>
+					</span>
+					<span class='label'>
+						<p class='lname'>Height</p>
+						<p class='ltext'> 3.5 m </p>
+					</span>
+				</td>
+			</tr>
+			<tr style='height:300px;border-bottom:1px solid grey;'>
+				<td style='width:35%;'><img src="images/apart50.png"  onclick='window.location=this.src;' style='max-width:150px'></td>
+				<td style='width:65%;vertical-align:top;'>
+					<p id=idDescription50 class=txt style='height:60%;width:100%'>%description%</p>
+					<span class='label'>
+						<p class='lname'>Price</p>
+						<p class='ltext'>4.000.000 ILS</p>
+					</span>
+					<span class='label'>
+						<p class='lname'>Size</p>
+						<p class='ltext'> 52 m² </p>
+					</span>
+					<span class='label'>
+						<p class='lname'>Balkony</p>
+						<p class='ltext'> 11 m² </p>
+					</span>
+					<span class='label'>
+						<p class='lname'>Height</p>
+						<p class='ltext'> 3.5 m </p>
+					</span>
+				</td>
+			</tr>
+			<tr style='height:300px;border-bottom:1px solid grey;'>
+				<td style='width:35%;'><img src="images/apart60.png"  onclick='window.location=this.src;' style='max-width:150px'></td>
+				<td style='width:65%;vertical-align:top;'>
+					<p id=idDescription60 class=txt style='width:100%'>%description%</p>
+				</td>
+			</tr>
+			<tr style='height:300px;border-bottom:1px solid grey;'>
+				<td style='width:35%;'><img src="images/apart75.png"  onclick='window.location=this.src;' style='max-width:150px'></td>
+				<td style='width:65%;vertical-align:top;'>
+					<p id=idDescription75 class=txt style='width:100%'>%description%</p>
+				</td>
+			</tr>
+
+		</table>
+		<p style='border-radius:0px 0px 15px 15px;height:10px;background-color:rgb(210,210,250);text-align:center;'>  </p>
+	</span>
+
+</body>                                                                         
+</html>
+      
